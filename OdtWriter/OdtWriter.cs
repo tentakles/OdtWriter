@@ -9,7 +9,8 @@ namespace OdtWriter
     {
         private string _templateFile;
         private List<OdtData> _data;
-        private const string InnerFilename = "content.xml";
+        private const string InnerFilenameContent = "content.xml";
+        private const string InnerFilenameStyles = "styles.xml";
         private const string TemplateMatchFormatString = "${0}$";
 
         public OdtWriter()
@@ -37,9 +38,11 @@ namespace OdtWriter
         {
             string tempdir = OdtWriterFileHandling.GetTempDirectory();
             OdtWriterFileHandling.UnzipFileToDirectory(_templateFile, tempdir);
-            var completepath = Path.Combine(tempdir, InnerFilename);
+            var completepathcontent = Path.Combine(tempdir, InnerFilenameContent);
+            var completepathstyles = Path.Combine(tempdir, InnerFilenameStyles);
 
-            ReplaceXml(completepath);
+            ReplaceXml(completepathcontent);
+            ReplaceXml(completepathstyles);
 
             if (replaceIfExists)
                 OdtWriterFileHandling.RemoveIfExists(filename);

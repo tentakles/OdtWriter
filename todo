@@ -18,8 +18,8 @@
 
 8: splitta alla rader i varje textlåda
 
-8.1: utöka dataformatet till att innehålla arrayer?
+*8.1: utöka dataformatet till att innehålla arrayer?
 
-8.2: för rad, duplicera noden som innehåller den.
+*8.2: för rad, duplicera noden som innehåller den.
 
 9: Testa alla möjliga layouter och permutationer
