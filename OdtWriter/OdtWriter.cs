@@ -61,40 +61,46 @@ namespace OdtWriter
                 var simple = idata as OdtDataSimple;
                 var arr = idata as OdtDataArray;
 
-                XElement ie = GetNode(xDoc, match);
-
-                if (ie != null)
+                var ie = new XElement("temp");
+                while (ie != null)
                 {
-                    if (simple != null)
+                    ie = GetNode(xDoc, match);
+
+                    if (ie != null)
                     {
-                        ie.Value = simple.Data;
+                        HandleElement(simple, ie, arr);
                     }
-                    else if (arr != null)
-                    {
-                        var lastelement = ie;
-                        foreach (var iarr in arr.Data)
-                        {
-                            var clone = new XElement(lastelement) { Value = iarr };
-
-                            if (lastelement == ie)
-                            {
-                                lastelement.ReplaceWith(clone);
-
-                            }
-                            else
-                            {
-                                lastelement.AddAfterSelf(clone);
-                            }
-                            lastelement = clone;
-                        }
-
-                    }
-
                 }
 
             }
 
             xDoc.Save(completepath);
+        }
+
+        private static void HandleElement(OdtDataSimple simple, XElement ie, OdtDataArray arr)
+        {
+            if (simple != null)
+            {
+                ie.Value = simple.Data;
+            }
+            else if (arr != null)
+            {
+                var lastelement = ie;
+                foreach (var iarr in arr.Data)
+                {
+                    var clone = new XElement(lastelement) { Value = iarr };
+
+                    if (lastelement == ie)
+                    {
+                        lastelement.ReplaceWith(clone);
+                    }
+                    else
+                    {
+                        lastelement.AddAfterSelf(clone);
+                    }
+                    lastelement = clone;
+                }
+            }
         }
 
         private XElement GetNode(XDocument xDoc, string match)
