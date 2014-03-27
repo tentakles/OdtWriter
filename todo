@@ -1,0 +1,19 @@
+
+
+*1:lägga mallen på plats med de tre fälten
+
+*2: skapa ett tempdir
+
+*3: unzipa filen till tempdir
+
+*	3.1: Öppna filen
+
+*	4: search and repleace loop
+
+*	5: spara filen
+
+*	6: spara till zipfil
+
+*7: rensa upp tempdir
+
+9: Testa alla möjliga layouter och permutationer
