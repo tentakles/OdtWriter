@@ -3,6 +3,17 @@
    public class OdtData
     {
         public string Name;
-        public string Data;
+      
     }
+
+   public class OdtDataSimple : OdtData
+   {
+       public string Data;
+   }
+
+   public class OdtDataArray : OdtData
+   {
+       public string[] Data;
+   }
+
 }

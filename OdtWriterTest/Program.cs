@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using OdtWriter;
 
 namespace OdtWriterTest
@@ -11,12 +13,15 @@ namespace OdtWriterTest
             string templatefilename = @"c:\temp\odt\mall.odt";
             string resultfilename = @"c:\temp\odt\result.odt";
 
+
+            string[] list = Enumerable.Range(1, 2000).Select(x => "Min fina rad " + x).ToArray();
+
             var data = new List<OdtData>
             {
-                new OdtData {Name = "RUBRIK1", Data = "Hejsan hoppsan"},
-                new OdtData {Name = "TEXT1", Data = "Hejsan 1hoppsan"},
-                new OdtData {Name = "TEXT2", Data = "Hejsan2 hoppsan"},
-                new OdtData {Name = "TEXT3", Data = "Hejsan3 hoppsan"}
+                new OdtDataSimple {Name = "RUBRIK1", Data = "Hejsan hoppsan"},
+                new OdtDataSimple {Name = "TEXT1", Data = "Hejsan 1\nhoppsan\n"},
+                new OdtDataSimple {Name = "TEXT2", Data = "Hejsan2 hoppsan"},
+                new OdtDataArray {Name = "TEXT3", Data = list}
             };
             try
             {

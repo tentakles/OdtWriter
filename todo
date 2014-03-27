@@ -6,14 +6,20 @@
 
 *3: unzipa filen till tempdir
 
-*	3.1: Öppna filen
+*3.1: Öppna filen
 
-*	4: search and repleace loop
+*4: search and repleace loop
 
-*	5: spara filen
+*5: spara filen
 
-*	6: spara till zipfil
+*6: spara till zipfil
 
 *7: rensa upp tempdir
+
+8: splitta alla rader i varje textlåda
+
+8.1: utöka dataformatet till att innehålla arrayer?
+
+8.2: för rad, duplicera noden som innehåller den.
 
 9: Testa alla möjliga layouter och permutationer
