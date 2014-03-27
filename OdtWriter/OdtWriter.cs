@@ -111,64 +111,40 @@ namespace OdtWriter
             return null;
         }
 
-
-        /*
-
-        foreach (var i in _data)
+        public byte[] Download()
         {
-            string match = String.Format(TemplateMatchFormatString, i.Name);
-            var simple = i as OdtDataSimple;
-            var arr = i as OdtDataArray;
+            string tempfile = Path.GetRandomFileName();
+            string temppath = Path.Combine(Path.GetTempPath(), tempfile);
+            WriteToFile(temppath, false);
+            var result = File.ReadAllBytes(temppath);
+            File.Delete(temppath);
+            return result;
         }
 
-        //
-      
 
-        //).Elements(XName.Get("office", "body"));
-
-        //Descendants("body");//.Elements("office:text");
-
-        //    "office:body").Elements("office:text");
-
-        /*
-        List<Student> students = (from student in doc.Element("Students").Elements("student")
-                                  select new Student
-                                  {
-                                      Name = student.Attribute("name"),
-                                      Class = student.Attribute("class")
-                                  }
-                      ).ToList();
-         */
-
-
-
-        private void ReplaceText(string completepath)
-        {
-            string text = File.ReadAllText(completepath);
-
-            foreach (var i in _data)
-            {
-                string match = String.Format(TemplateMatchFormatString, i.Name);
-                var simple = i as OdtDataSimple;
-                var arr = i as OdtDataArray;
-
-                if (simple != null)
-                {
-                    text = text.Replace(match, simple.Data);
-                }
-                else if (arr != null)
-                {
-
-                }
-            }
-
-            File.WriteAllText(completepath, text);
-        }
-
-        //public byte[] Download()
+        //private void ReplaceText(string completepath)
         //{
-        //    throw new NotImplementedException();
-        //    return null;
+        //    string text = File.ReadAllText(completepath);
+
+        //    foreach (var i in _data)
+        //    {
+        //        string match = String.Format(TemplateMatchFormatString, i.Name);
+        //        var simple = i as OdtDataSimple;
+        //        var arr = i as OdtDataArray;
+
+        //        if (simple != null)
+        //        {
+        //            text = text.Replace(match, simple.Data);
+        //        }
+        //        else if (arr != null)
+        //        {
+
+        //        }
+        //    }
+
+        //    File.WriteAllText(completepath, text);
         //}
+
+
     }
 }
